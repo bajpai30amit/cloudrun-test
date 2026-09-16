@@ -14,9 +14,9 @@ terraform {
 }
 
 provider "google" {
-  project     = "noc-test-project"
+  project     = "watchful-idea-505906-u3"
   region      = "us-central-1"
-  credentials = file("66-test.json")
+  credentials = var.gcp_credentials
 }
 resource "google_pubsub_lite_topic" "example" {
   name = "example-topic"
