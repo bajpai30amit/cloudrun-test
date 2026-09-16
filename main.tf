@@ -6,7 +6,7 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 4.1.0"
     }
-    "google_beta" = { # Quoted to fix HCL syntax error
+    google_beta = { # Quoted to fix HCL syntax error
       source  = "hashicorp/google-beta"
       version = "~> 4.2.0"
     }
