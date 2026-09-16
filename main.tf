@@ -12,6 +12,7 @@ terraform {
     }
   }
 }
+}
 provider "google" {
   project     = "noc-test-project"
   region      = "us-central-1"
