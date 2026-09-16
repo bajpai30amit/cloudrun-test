@@ -17,7 +17,32 @@ provider "google" {
   region      = "us-central-1"
   credentials = file("66-test.json")
 }
+resource "google_pubsub_lite_topic" "example" {
+  name = "example-topic"
+  project = data.google_project.project.number
+  partition_config {
+    count = 1
+    capacity {
+      publish_mib_per_sec = 4
+      subscribe_mib_per_sec = 8
+    }
+  }
 
+  retention_config {
+    per_partition_bytes = 32212254720
+  }
+}
+
+resource "google_pubsub_lite_subscription" "example" {
+  name  = "example-subscription"
+  topic = google_pubsub_lite_topic.example.name
+  delivery_config {
+    delivery_requirement = "DELIVER_AFTER_STORED"
+  }
+}
+
+data "google_project" "project" {
+}
 resource "google_cloud_run_service" "default" {
   name     = "cloudrun-srv"
   location = "us-central1"
