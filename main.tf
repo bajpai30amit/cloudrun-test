@@ -1,17 +1,17 @@
 terraform {
-  required_version = ">= 1.50.0"
+  required_version = ">= 1.5.0" # Adjusted to a valid Terraform version
+
   required_providers {
     google = {
       source  = "hashicorp/google"
       version = "~> 4.1.0"
     }
-    google-beta = {
+    "google-beta" = { # Quoted to fix HCL syntax error
       source  = "hashicorp/google-beta"
       version = "~> 4.2.0"
     }
   }
 }
-
 provider "google" {
   project     = "noc-test-project"
   region      = "us-central-1"
